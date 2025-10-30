@@ -1,0 +1,13 @@
+{
+  "name": "lighthouse-watch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "monitor": "node monitor.mjs"
+  },
+  "dependencies": {
+    "chrome-launcher": "^1.1.0",
+    "lighthouse": "^12.0.0"
+  }
+}
+
