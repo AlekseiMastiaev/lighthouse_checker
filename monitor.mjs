@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import lighthouse from 'lighthouse';
-import chromeLauncher from 'chrome-launcher';
+import { launch } from 'chrome-launcher';
 import crypto from 'node:crypto';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -67,7 +67,7 @@ function urlKey(u) {
 }
 
 async function runOne(url, device) {
-  const chrome = await chromeLauncher.launch({
+    const chrome = await launch({
     chromeFlags: ['--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
   });
   try {
