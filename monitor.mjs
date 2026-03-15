@@ -32,6 +32,7 @@ const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 function pickMetrics(lhr) {
   const get = (id) => lhr.audits[id]?.numericValue ?? null;
   return {
+    FCP: get('first-contentful-paint'), // ms
     LCP: get('largest-contentful-paint'), // ms
     CLS: lhr.audits['cumulative-layout-shift']?.numericValue ?? null, // unitless
     TBT: get('total-blocking-time'), // ms
@@ -114,6 +115,7 @@ async function runMedian(url) {
     await sleep(500);
   }
   return {
+    FCP: median(attempts.map(a => a.FCP)),
     LCP: median(attempts.map(a => a.LCP)),
     CLS: median(attempts.map(a => a.CLS)),
     TBT: median(attempts.map(a => a.TBT)),
@@ -174,6 +176,7 @@ function renderTelegram(current, baseline) {
     const prev = baseline.results[key] || {};
     const m = cur.metrics;
 
+    const fcpPF = passFail('FCP', m.FCP);
     const lcpPF = passFail('LCP', m.LCP);
     const clsPF = passFail('CLS', m.CLS);
     const tbtPF = passFail('TBT', m.TBT);
@@ -182,6 +185,7 @@ function renderTelegram(current, baseline) {
     // В Telegram достаточно голого URL — он кликабелен
     lines.push(`${url}  (Perf: ${m.Perf ?? '—'})`);
     lines.push(
+      `${icon(fcpPF)} FCP: ${fmtMs(m.FCP)}${fmtDelta(m.FCP, prev.metrics?.FCP, 'ms')}  (<= ${fmtMs(cfg.budgets.FCP)})`,
       `${icon(lcpPF)} LCP: ${fmtMs(m.LCP)}${fmtDelta(m.LCP, prev.metrics?.LCP, 'ms')}  (≤ ${fmtMs(cfg.budgets.LCP)})`,
       `${icon(clsPF)} CLS: ${(m.CLS ?? 0).toFixed(3)}${fmtDelta(m.CLS, prev.metrics?.CLS, 'unit') || ''}  (≤ ${(cfg.budgets.CLS ?? 0).toFixed(2)})`,
       `${icon(tbtPF)} TBT: ${fmtMs(m.TBT)}${fmtDelta(m.TBT, prev.metrics?.TBT, 'ms')}  (≤ ${fmtMs(cfg.budgets.TBT)})`,

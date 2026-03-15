@@ -1,7 +1,7 @@
 {
   "device": "desktop",
   "runs": 3,
-  "budgets": { "LCP": 2500, "CLS": 0.1, "TBT": 200 },
+  "budgets": { "FCP": 1800, "LCP": 2500, "CLS": 0.1, "TBT": 200 },
   "urls": [
     "https://www.actitime.com/",
     "https://www.actitime.com/pricing/",
