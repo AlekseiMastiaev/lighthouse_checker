@@ -16,6 +16,7 @@ const baselineFileFor = (device) => path.join(
 
 const cfgPath = path.join(ROOT, 'sites.config.json');
 const cfg = JSON.parse(await fs.readFile(cfgPath, 'utf8'));
+const device = (process.env.LIGHTHOUSE_DEVICE || cfg.device || 'desktop').toLowerCase();
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '';
@@ -62,6 +63,12 @@ function passFail(metric, value) {
   return value <= lim ? 'pass' : 'fail';
 }
 
+if (!['desktop', 'mobile'].includes(device)) {
+  throw new Error(`Unsupported device "${device}". Expected "desktop" or "mobile".`);
+}
+
+cfg.device = device;
+
 function urlKey(u) {
   const { hostname, pathname } = new URL(u);
   const raw = `${hostname}${pathname}`;
@@ -102,7 +109,7 @@ async function runOne(url, device) {
 async function runMedian(url) {
   const attempts = [];
   for (let i = 0; i < cfg.runs; i++) {
-    const r = await runOne(url, cfg.device);
+    const r = await runOne(url, device);
     attempts.push(r.metrics);
     await sleep(500);
   }
@@ -115,7 +122,7 @@ async function runMedian(url) {
 }
 
 async function readBaseline() {
-  const candidates = [baselineFileFor(cfg.device), LEGACY_BASELINE_FILE];
+  const candidates = [baselineFileFor(device), LEGACY_BASELINE_FILE];
   for (const file of candidates) {
     try {
       const raw = await fs.readFile(file, 'utf8');
@@ -124,14 +131,14 @@ async function readBaseline() {
       // keep trying fallbacks
     }
   }
-  return { stamp: null, device: cfg.device, results: {} };
+  return { stamp: null, device, results: {} };
 }
 
 async function writeCurrent(current) {
   await fs.mkdir(REPORTS_DIR, { recursive: true });
   const currPath = path.join(REPORTS_DIR, `run-${runStamp}.json`);
   await fs.writeFile(currPath, JSON.stringify(current, null, 2));
-  const baselinePath = baselineFileFor(cfg.device);
+  const baselinePath = baselineFileFor(current.device);
   await fs.writeFile(baselinePath, JSON.stringify(current, null, 2)); // обновляем baseline
   return currPath;
 }

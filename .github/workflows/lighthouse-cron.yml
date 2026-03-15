@@ -30,10 +30,18 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Run monitor
+      - name: Run monitor (desktop)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LIGHTHOUSE_DEVICE: desktop
+        run: npm run monitor
+
+      - name: Run monitor (mobile)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          LIGHTHOUSE_DEVICE: mobile
         run: npm run monitor
 
       - name: Commit updated baseline
