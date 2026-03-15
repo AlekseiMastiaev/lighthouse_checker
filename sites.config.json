@@ -1,11 +1,13 @@
 {
   "device": "desktop",
   "runs": 3,
-  "budgets": { "LCP": 2500, "CLS": 0.10, "TBT": 200 },
+  "budgets": { "LCP": 2500, "CLS": 0.1, "TBT": 200 },
   "urls": [
     "https://www.actitime.com/",
     "https://www.actitime.com/pricing/",
+    "https://www.actitime.com/software-collections/hubstaff-review",
     "https://www.actiplans.com/",
-    "https://www.actiplans.com/pricing/"
+    "https://www.actiplans.com/pricing/",
+    "https://www.actiplans.com/blog/how-to-manage-medical-absences-in-remote-teams"
   ]
 }
