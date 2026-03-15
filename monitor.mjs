@@ -8,7 +8,11 @@ import crypto from 'node:crypto';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
 const REPORTS_DIR = path.join(ROOT, 'reports');
-const BASELINE_FILE = path.join(REPORTS_DIR, 'latest.json');
+const LEGACY_BASELINE_FILE = path.join(REPORTS_DIR, 'latest.json');
+const baselineFileFor = (device) => path.join(
+  REPORTS_DIR,
+  `latest-${(device || 'desktop').toLowerCase()}.json`
+);
 
 const cfgPath = path.join(ROOT, 'sites.config.json');
 const cfg = JSON.parse(await fs.readFile(cfgPath, 'utf8'));
@@ -111,19 +115,24 @@ async function runMedian(url) {
 }
 
 async function readBaseline() {
-  try {
-    const raw = await fs.readFile(BASELINE_FILE, 'utf8');
-    return JSON.parse(raw);
-  } catch {
-    return { stamp: null, device: cfg.device, results: {} };
+  const candidates = [baselineFileFor(cfg.device), LEGACY_BASELINE_FILE];
+  for (const file of candidates) {
+    try {
+      const raw = await fs.readFile(file, 'utf8');
+      return JSON.parse(raw);
+    } catch {
+      // keep trying fallbacks
+    }
   }
+  return { stamp: null, device: cfg.device, results: {} };
 }
 
 async function writeCurrent(current) {
   await fs.mkdir(REPORTS_DIR, { recursive: true });
   const currPath = path.join(REPORTS_DIR, `run-${runStamp}.json`);
   await fs.writeFile(currPath, JSON.stringify(current, null, 2));
-  await fs.writeFile(BASELINE_FILE, JSON.stringify(current, null, 2)); // обновляем baseline
+  const baselinePath = baselineFileFor(cfg.device);
+  await fs.writeFile(baselinePath, JSON.stringify(current, null, 2)); // обновляем baseline
   return currPath;
 }
 
