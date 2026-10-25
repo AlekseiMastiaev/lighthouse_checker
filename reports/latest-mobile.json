@@ -1,65 +1,65 @@
 {
-  "stamp": "2026-10-24-11-53-44",
+  "stamp": "2026-10-25-12-22-48",
   "device": "mobile",
   "results": {
     "www_actitime_com_2a5790a": {
       "url": "https://www.actitime.com/",
       "metrics": {
-        "FCP": 1404.097,
-        "LCP": 3236.5204999999996,
-        "CLS": 0.00212646484375,
-        "TBT": 571,
-        "Perf": 75
+        "FCP": 1264.919,
+        "LCP": 3407.8095000000003,
+        "CLS": 0.002797961235046387,
+        "TBT": 758,
+        "Perf": 72
       }
     },
     "www_actitime_com_pricing_c76d315": {
       "url": "https://www.actitime.com/pricing/",
       "metrics": {
-        "FCP": 1413.8335000000002,
-        "LCP": 7640.0414999999975,
+        "FCP": 1359.5635,
+        "LCP": 5805.2945,
         "CLS": 0.00212646484375,
-        "TBT": 447.5,
-        "Perf": 63
+        "TBT": 735.5710000000008,
+        "Perf": 60
       }
     },
     "www_actitime_com_software_collections_hubstaff_review_7c078a8": {
       "url": "https://www.actitime.com/software-collections/hubstaff-review",
       "metrics": {
-        "FCP": 1427.079,
-        "LCP": 2855.312,
+        "FCP": 1333.3970000000002,
+        "LCP": 2736.3444999999997,
         "CLS": 0.00212646484375,
-        "TBT": 476.5,
-        "Perf": 80
+        "TBT": 625,
+        "Perf": 78
       }
     },
     "www_actiplans_com_f5fc63a": {
       "url": "https://www.actiplans.com/",
       "metrics": {
-        "FCP": 1240.384,
-        "LCP": 2428.1565,
+        "FCP": 1166.45244,
+        "LCP": 3131.8819399999998,
         "CLS": 0.01108917236328125,
-        "TBT": 272,
-        "Perf": 92
+        "TBT": 378,
+        "Perf": 84
       }
     },
     "www_actiplans_com_pricing_5f9f7ef": {
       "url": "https://www.actiplans.com/pricing/",
       "metrics": {
-        "FCP": 1230.5755,
-        "LCP": 5823.848000000001,
+        "FCP": 1091.86836,
+        "LCP": 5002.73333,
         "CLS": 0.007569712744818794,
-        "TBT": 192,
-        "Perf": 75
+        "TBT": 339,
+        "Perf": 74
       }
     },
     "www_actiplans_com_blog_how_to_manage_medical_absences_in_remote_teams_2f4339d": {
       "url": "https://www.actiplans.com/blog/how-to-manage-medical-absences-in-remote-teams",
       "metrics": {
-        "FCP": 1215.0569999999998,
-        "LCP": 7927.766500000001,
-        "CLS": 0.03667288547092014,
-        "TBT": 229.73050000000012,
-        "Perf": 71
+        "FCP": 1155.80656,
+        "LCP": 4525.89004,
+        "CLS": 0.02298410373263889,
+        "TBT": 315.50000000000045,
+        "Perf": 77
       }
     }
   }
