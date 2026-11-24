@@ -1,0 +1,66 @@
+{
+  "stamp": "2026-11-24-18-39-29",
+  "device": "mobile",
+  "results": {
+    "www_actitime_com_2a5790a": {
+      "url": "https://www.actitime.com/",
+      "metrics": {
+        "FCP": 3341.4269999999997,
+        "LCP": 6854.8855,
+        "CLS": 0.00212646484375,
+        "TBT": 1003,
+        "Perf": 48
+      }
+    },
+    "www_actitime_com_pricing_c76d315": {
+      "url": "https://www.actitime.com/pricing/",
+      "metrics": {
+        "FCP": 2185.4039999999995,
+        "LCP": 6820.899,
+        "CLS": 0.0166714833577474,
+        "TBT": 817,
+        "Perf": 55
+      }
+    },
+    "www_actitime_com_software_collections_hubstaff_review_7c078a8": {
+      "url": "https://www.actitime.com/software-collections/hubstaff-review",
+      "metrics": {
+        "FCP": 1273.7455,
+        "LCP": 4785.334499999999,
+        "CLS": 0.00212646484375,
+        "TBT": 826.9999999999995,
+        "Perf": 61
+      }
+    },
+    "www_actiplans_com_f5fc63a": {
+      "url": "https://www.actiplans.com/",
+      "metrics": {
+        "FCP": 1145.7216400000002,
+        "LCP": 3260.162519999999,
+        "CLS": 0.01108917236328125,
+        "TBT": 346,
+        "Perf": 84
+      }
+    },
+    "www_actiplans_com_pricing_5f9f7ef": {
+      "url": "https://www.actiplans.com/pricing/",
+      "metrics": {
+        "FCP": 1503.76894,
+        "LCP": 3986.7629800000004,
+        "CLS": 0.007569712744818794,
+        "TBT": 290.49999999999955,
+        "Perf": 81
+      }
+    },
+    "www_actiplans_com_blog_how_to_manage_medical_absences_in_remote_teams_2f4339d": {
+      "url": "https://www.actiplans.com/blog/how-to-manage-medical-absences-in-remote-teams",
+      "metrics": {
+        "FCP": 1107.8696,
+        "LCP": 4544.2051249999995,
+        "CLS": 0.9996826171875001,
+        "TBT": 298,
+        "Perf": 53
+      }
+    }
+  }
+}
